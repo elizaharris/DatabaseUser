@@ -1,13 +1,13 @@
 Package: DatabaseUser
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Package for Functional Ecology database user access
+Version: 0.0.1.0000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Eliza",
+           family = "Harris",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "eliza.harris@uibk.ac.at",
+           comment = c(ORCID = "0000-0002-7102-8305"))
+Description: Package for Functional Ecology database user access.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
