@@ -3,6 +3,7 @@
 # - display column names in a table
 # - get first 10 rows of a table
 # - quick filtering for micromet...
+# - show table size
 
 #' Function to query the postgres database from R
 #' Returns the result of the query in dataframe format
@@ -88,4 +89,16 @@ showRange <- function(tablename,colnames){
   }
   print(results)
   return(results)
+}
+
+#' Function to get the size of a table
+#' @param tablename is the name of the table
+#' @export
+showSize <- function(tablename){
+  query = paste0("SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '",tablename,"';")
+  columns = queryDatabaseUser(query)
+  rows = queryDatabaseUser(paste0("SELECT ",columns[[1]][2]," FROM ",tablename,";"))
+  size = c(length(columns[[1]]),length(rows[[1]]))
+  print(paste0(tablename," has ",size[1]," columns and ",size[2]," rows"))
+  return(size)
 }
