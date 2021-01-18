@@ -1,9 +1,7 @@
 
 # functions needed for users:
-# - display column names in a table
 # - get first 10 rows of a table
 # - quick filtering for micromet...
-# - show table size
 
 #' Function to query the postgres database from R
 #' Returns the result of the query in dataframe format
@@ -13,9 +11,11 @@
 queryDatabaseUser <- function(query){
   on.exit(dbDisconnect(con))
   con <- dbConnect(drv = dbDriver("PostgreSQL"),
-                   dbname = "c7701050", host = "db06.intra.uibk.ac.at",
-                   port = 5432, user = "c7701196",
-                   password = "U2z29!1*")
+                   dbname = "c7701050",
+                   host = "db06.intra.uibk.ac.at",
+                   port = 5432,
+                   user = keyring::key_list("databaselogin", keyring ="DBcredentials")[1,2],
+                   password = keyring::key_get("databaselogin", "c7701196", keyring ="DBcredentials"))
   tmp <- dbGetQuery(con, query)
 }
 
